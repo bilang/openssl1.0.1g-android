@@ -71,6 +71,10 @@ Errors while compiling the OpenSSL for Android
    Temporary Solution: Do make again, without make clean.
 ```
 
+编译完之后可能会有链接的问题，如
+
+./libcrypto.a(bio_cb.o):bio_cb.c:function BIO_debug_callback: error: undefined reference to 'stderr'
+
 由于openssl编译时没有android api宏，当编译的目标版本小于android m也就是23的时候，编译会报错，这时编译指定android的版本大于23即可，这样做会对兼容性产生什么影响尚未验证。
 
 编译成功生成了.a文件之后，将其放入app的工程中，可能也会产生各种编译的错误，这里需要调整sdk的版本和最小兼容版本，具体能兼容到哪个版本待验证。
